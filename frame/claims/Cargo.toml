@@ -1,0 +1,59 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "FRAME to claim airdrop"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-claims"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# crates
+array-bytes = { version = "1.1.0" }
+codec       = { package = "parity-scale-codec", version = "2.0.1", default-features = false, features = ["derive"] }
+log         = { version = "0.4.14" }
+serde       = { version = "1.0.125", optional = true }
+serde_json  = { version = "1.0.64", optional = true }
+# oracol
+oracol-support = { default-features = false, path = "../support" }
+# substrate
+frame-support = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+frame-system  = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-io         = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime    = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-std        = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[dev-dependencies]
+# crates
+libsecp256k1 = { version = "0.3.5" }
+# oracol
+oracol-balances = { path = "../balances" }
+# substrate
+sp-core = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[features]
+default = ["std"]
+
+std = [
+	"crates-std",
+	"oracol-std",
+	"substrate-std",
+]
+
+crates-std    = [
+	"codec/std",
+	"serde",
+	"serde_json",
+]
+oracol-std  = [
+	"oracol-support/std",
+]
+substrate-std = [
+	"frame-support/std",
+	"frame-system/std",
+	"sp-io/std",
+	"sp-runtime/std",
+	"sp-std/std",
+]

@@ -1,0 +1,82 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "FRAME pallet staking"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-staking"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# crates
+codec             = { package = "parity-scale-codec", version = "2.0.1", default-features = false, features = ["derive"] }
+log               = { version = "0.4.14" }
+paste             = { version = "1.0.5" }
+serde             = { version = "1.0.125", optional = true }
+static_assertions = { version = "1.1.0" }
+# oracol
+oracol-staking-rpc-runtime-api = { default-features = false, path = "./rpc/runtime-api" }
+oracol-support                 = { default-features = false, path = "../support" }
+# github
+substrate-fixed = { default-features = false, git = "https://github.com/encointer/substrate-fixed", branch = "master" }
+# substrate
+frame-election-provider-support = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+frame-support                   = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+frame-system                    = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+pallet-authorship               = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+pallet-session                  = { default-features = false, features = ["historical"], git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-arithmetic                   = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-core                         = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-io                           = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime                      = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-staking                      = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-std                          = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[dev-dependencies]
+# crates
+rand_chacha = { version = "0.3.0" }
+# oracol
+oracol-balances = { path = "../../frame/balances" }
+oracol-support  = { features = ["easy-testing"], path = "../support" }
+# substrate
+pallet-timestamp     = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-storage           = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-tracing           = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+substrate-test-utils = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[features]
+default = ["std"]
+
+std = [
+	"crates-std",
+	"oracol-std",
+	"github-std",
+	"substrate-std",
+]
+
+crates-std    = [
+	"codec/std",
+	"serde",
+]
+oracol-std  = [
+	"oracol-staking-rpc-runtime-api/std",
+	"oracol-support/std",
+]
+github-std    = ["substrate-fixed/std"]
+substrate-std = [
+	"frame-election-provider-support/std",
+	"frame-support/std",
+	"frame-system/std",
+	"pallet-authorship/std",
+	"pallet-session/std",
+	"sp-arithmetic/std",
+	"sp-core/std",
+	"sp-io/std",
+	"sp-runtime/std",
+	"sp-staking/std",
+	"sp-std/std",
+]
+
+try-runtime = ["frame-support/try-runtime"]

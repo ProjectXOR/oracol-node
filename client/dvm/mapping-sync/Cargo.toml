@@ -1,0 +1,25 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "Mapping sync logic for dvm."
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "dc-mapping-sync"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# substrate
+sc-client-api = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-api        = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-blockchain = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime    = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+# oracol
+dc-db               = { path = "../db" }
+dp_consensus        = { path = "../../../primitives/consensus/" }
+dvm-rpc-runtime-api = { path = "../../../frame/dvm/rpc/runtime-api" }
+# crates
+futures       = { version = "0.3.1", features = ["compat"] }
+futures-timer = "3.0.1"
+log           = "0.4.8"

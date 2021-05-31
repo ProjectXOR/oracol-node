@@ -1,2 +1,1 @@
-# oracol-node
-Testnet for Oracol XOR
+First Oracol Testnet

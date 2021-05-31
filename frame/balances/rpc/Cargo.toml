@@ -1,0 +1,23 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "Node-specific RPC methods for interaction with balances."
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-balances-rpc"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# crates
+codec               = { package = "parity-scale-codec", version = "2.0.1" }
+jsonrpc-core        = { version = "15.1.0" }
+jsonrpc-core-client = { version = "15.1.0" }
+jsonrpc-derive      = { version = "15.1.0" }
+# oracol
+oracol-balances-rpc-runtime-api = { path = "./runtime-api" }
+# substrate
+sp-api        = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-blockchain = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime    = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }

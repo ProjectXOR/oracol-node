@@ -1,0 +1,79 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+build       = "build.rs"
+description = "FRAME pallet to relay Ethereum headers"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-ethereum-relay"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# crates
+array-bytes = { version = "1.1.0" }
+blake2-rfc  = { version = "0.2.18", default-features = false }
+codec       = { package = "parity-scale-codec", version = "2.0.1", default-features = false }
+serde       = { version = "1.0.125", optional = true }
+serde_json  = { version = "1.0.64", optional = true }
+# oracol
+oracol-relay-primitives = { default-features = false, path = "../../../../primitives/relay" }
+oracol-relayer-game     = { default-features = false, path = "../../../bridge/relayer-game" }
+oracol-support          = { default-features = false, path = "../../../support" }
+ethereum-primitives       = { default-features = false, path = "../../../../primitives/ethereum-primitives" }
+# github
+ckb-merkle-mountain-range = { default-features = false, git = "https://github.com/ProjectXOR/merkle-mountain-range.git" }
+ethereum-types            = { version = "0.11.0", default-features = false }
+rlp                       = { version = "0.5.0", default-features = false }
+# substrate
+frame-support = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+frame-system  = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-core       = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime    = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-std        = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[dev-dependencies]
+# oracol
+oracol-balances   = { path = "../../../../frame/balances" }
+ethereum-primitives = { features = ["deserialize"], path = "../../../../primitives/ethereum-primitives" }
+# substrate
+sp-core = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-io   = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[features]
+default = ["std"]
+
+std = [
+	"crates-std",
+	"oracol-std",
+	"github-std",
+	"substrate-std",
+]
+
+crates-std    = [
+	"blake2-rfc/std",
+	"codec/std",
+	"serde",
+	"serde_json",
+]
+oracol-std  = [
+	"oracol-relayer-game/std",
+	"oracol-relay-primitives/std",
+	"oracol-support/std",
+	"ethereum-primitives/std",
+]
+github-std    = [
+	"ckb-merkle-mountain-range/std",
+	"ethereum-types/std",
+	"rlp/std",
+]
+substrate-std = [
+	"frame-support/std",
+	"frame-system/std",
+	"sp-core/std",
+	"sp-runtime/std",
+	"sp-std/std",
+]
+
+deserialize = []

@@ -1,0 +1,29 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "Withdraw precompile for EVM pallet."
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-evm-precompile"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# oracol
+oracol-evm-precompile-empty    = { default-features = false, path = "contracts/empty" }
+oracol-evm-precompile-issuing  = { default-features = false, path = "contracts/issuing" }
+oracol-evm-precompile-oxor     = { default-features = false, path = "contracts/oxor" }
+oracol-evm-precompile-simple   = { default-features = false, path = "contracts/simple" }
+oracol-evm-precompile-withdraw = { default-features = false, path = "contracts/withdraw" }
+
+[features]
+default = ["std"]
+
+std = [
+	"oracol-evm-precompile-empty/std",
+	"oracol-evm-precompile-issuing/std",
+	"oracol-evm-precompile-oxor/std",
+	"oracol-evm-precompile-simple/std",
+	"oracol-evm-precompile-withdraw/std",
+]

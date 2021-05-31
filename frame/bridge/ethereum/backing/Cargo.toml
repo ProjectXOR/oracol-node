@@ -1,0 +1,77 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "FRAME pallet to back Ethereum assets"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-ethereum-backing"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# crates
+array-bytes = { version = "1.1.0" }
+codec       = { package = "parity-scale-codec", version = "2.0.1", default-features = false, features = ["derive"] }
+log         = { version = "0.4.14" }
+serde       = { version = "1.0.125", optional = true }
+serde_json  = { version = "1.0.64", optional = true }
+# oracol
+oracol-relay-primitives = { default-features = false, path = "../../../../primitives/relay" }
+oracol-support          = { default-features = false, path = "../../../support" }
+ethereum-primitives       = { default-features = false, path = "../../../../primitives/ethereum-primitives" }
+# github
+ethabi = { default-features = false, git = "https://github.com/ProjectXOR/ethabi.git", branch = "xavier-no-std" }
+# substrate
+frame-support = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+frame-system  = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-io         = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime    = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-std        = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[dev-dependencies]
+# oracol
+oracol-balances              = { path = "../../../../frame/balances" }
+oracol-ethereum-linear-relay = { path = "../linear-relay" }
+oracol-ethereum-relay        = { features = ["deserialize"], path = "../relay" }
+oracol-relay-primitives      = { path = "../../../../primitives/relay" }
+oracol-relayer-game          = { path = "../../relayer-game" }
+oracol-staking               = { path = "../../../../frame/staking" }
+ethereum-primitives            = { features = ["deserialize"], path = "../../../../primitives/ethereum-primitives" }
+# github
+rlp = { version = "0.5.0" }
+# substrate
+frame-election-provider-support = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+pallet-session                  = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+pallet-timestamp                = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-core                         = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-staking                      = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[features]
+default = ["std"]
+
+std = [
+	"crates-std",
+	"oracol-std",
+	"github-std",
+	"substrate-std",
+]
+
+crates-std    = [
+	"codec/std",
+	"serde",
+	"serde_json",
+]
+oracol-std  = [
+	"oracol-relay-primitives/std",
+	"oracol-support/std",
+	"ethereum-primitives/std",
+]
+github-std    = ["ethabi/std"]
+substrate-std = [
+	"frame-support/std",
+	"frame-system/std",
+	"sp-io/std",
+	"sp-runtime/std",
+	"sp-std/std",
+]

@@ -1,0 +1,25 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "ORACOL node runtime primitives"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "xor-primitives"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "2.2.0"
+
+[dependencies]
+# substrate
+sp-core    = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[features]
+default = ["std"]
+
+std = ["substrate-primitives-std"]
+
+substrate-primitives-std = [
+	"sp-core/std",
+	"sp-runtime/std",
+]

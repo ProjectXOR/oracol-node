@@ -1,0 +1,62 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "Pallet for logging MMR into header digest"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "oracol-header-mmr"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+# crates
+codec = { package = "parity-scale-codec", version = "2.0.1", default-features = false }
+log   = { version = "0.4.14" }
+serde = { version = "1.0.125", optional = true }
+# oracol
+oracol-header-mmr-rpc-runtime-api = { default-features = false, path = "./rpc/runtime-api" }
+oracol-relay-primitives           = { default-features = false, path = "../../primitives/relay" }
+oracol-support                    = { default-features = false, path = "../support" }
+# github
+merkle-mountain-range = { package = "ckb-merkle-mountain-range", default-features = false, git = "https://github.com/ProjectXOR/merkle-mountain-range.git" }
+# substrate
+frame-support = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+frame-system  = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-runtime    = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-std        = { default-features = false, git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[dev-dependencies]
+# crates
+array-bytes = { version = "1.1.0" }
+serde_json  = { version = "1.0.64" }
+# substrate
+sp-core = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+sp-io   = { git = "https://github.com/ProjectXOR/substrate.git", branch = "latest" }
+
+[features]
+default = ["std"]
+
+std = [
+	"crates-std",
+	"oracol-std",
+	"github-std",
+	"substrate-std",
+]
+
+crates-std    = [
+	"codec/std",
+	"serde",
+]
+oracol-std  = [
+	"oracol-header-mmr-rpc-runtime-api/std",
+	"oracol-relay-primitives/std",
+	"oracol-support/std",
+]
+github-std    = ["merkle-mountain-range/std"]
+substrate-std = [
+	"frame-support/std",
+	"frame-system/std",
+	"sp-runtime/std",
+	"sp-std/std",
+]

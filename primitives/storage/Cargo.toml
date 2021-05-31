@@ -1,0 +1,16 @@
+[package]
+authors     = ["Oracol XOR Network <contact@oracol.org>"]
+description = "Storage key for ethereum schema"
+edition     = "2018"
+homepage    = "https://oracol.org/"
+license     = "GPL-3.0"
+name        = "dp-storage"
+readme      = "README.md"
+repository  = "https://github.com/ProjectXOR/oracol-node"
+version     = "0.0.1"
+
+[dependencies]
+
+[features]
+default = ["std"]
+std = []
